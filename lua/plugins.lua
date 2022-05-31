@@ -23,7 +23,10 @@ vim.cmd([[
 ]])
 
 
-local packer = require("packer")
+local status, packer = pcall(require, "packer")
+if not status then
+	return
+end
 
 -- use {
 --   'myusername/example',        -- The plugin location string
