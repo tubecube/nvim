@@ -36,7 +36,9 @@ telescope.setup {
 		frecency = {
 			show_scores = false,
 			workspaces = {
-				["vim"] = "/Users/gaosiyuan/.config/nvim",
+				["vim_config"] = vim.fn.stdpath("config"),
+				["vim_data"] = vim.fn.stdpath("data"),
+				["vim_cache"] = vim.fn.stdpath("cache"),
 			}
 		}
 	},
