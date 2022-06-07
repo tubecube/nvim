@@ -50,7 +50,12 @@ keymap("", "<leader>d", ":bdelete!<cr>", { noremap = true })
 
 require("plugins")
 require("conf")
+
 vim.cmd([[
 	set background=dark
 	colorscheme edge
 ]])
+
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.wo.foldlevel = 99
