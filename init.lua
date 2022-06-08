@@ -52,6 +52,7 @@ keymap("", "<leader>j", ":b#<cr>", {silent = true, noremap = true})
 
 -- Close current buffer
 keymap("", "<leader>d", ":bdelete!<cr>", { noremap = true })
+keymap("", "<leader>a", ":lua require'tools'.CleanExtraSpaces()<cr>", {noremap = true, silent = true})
 
 -- colorscheme
 vim.cmd([[
