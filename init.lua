@@ -32,6 +32,10 @@ vim.g.maplocalleader = " "
 
 require("plugins")
 require("conf")
+local tools = require("tools")
+tools.EnableWSLYank()
+tools.ReturnLastPosOnEnter()
+tools.FixFoldBug()
 
 local keymap = vim.api.nvim_set_keymap
 keymap("", "j", "(v:count == 0 ? 'gj' : 'j')", { noremap = true, silent = true, expr = true })
@@ -45,16 +49,6 @@ keymap("", "<leader>k", ":BufferLinePick<cr>", {silent = true, noremap = true})
 keymap("", "<leader>h", ":BufferLineCyclePrev<cr>", {silent = true, noremap = true})
 keymap("", "<leader>l", ":BufferLineCycleNext<cr>", {silent = true, noremap = true})
 keymap("", "<leader>j", ":b#<cr>", {silent = true, noremap = true})
-
-vim.cmd [[
-	" Return to last edit position when opening files (You want this!)
-	autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
-	augroup _fold_bug_solution
-		autocmd!
-		autocmd BufRead * autocmd BufWinEnter * ++once normal! zx
-	augroup end
-]]
 
 -- Close current buffer
 keymap("", "<leader>d", ":bdelete!<cr>", { noremap = true })
