@@ -157,6 +157,7 @@ return packer.startup(function(use)
 			vim.g.tokyonight_style = 'night' -- day or storm
 		end
 	}
+	use 'Mofiqul/dracula.nvim'
 
 	use 'jiangmiao/auto-pairs'
 	use 'RRethy/vim-illuminate'
@@ -218,5 +219,8 @@ return packer.startup(function(use)
 		'nvim-telescope/telescope-frecency.nvim',
 		requires = {'tami5/sqlite.lua'}
 	}
+
+	-- dap
+	use 'mfussenegger/nvim-dap'
 
 end)

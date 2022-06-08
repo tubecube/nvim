@@ -1,13 +1,3 @@
-
-vim.opt.termguicolors = true
-
-local keymap = vim.api.nvim_set_keymap
-
-keymap("", "<leader>k", ":BufferLinePick<cr>", {silent = true, noremap = true})
-keymap("", "<leader>h", ":BufferLineCyclePrev<cr>", {silent = true, noremap = true})
-keymap("", "<leader>l", ":BufferLineCycleNext<cr>", {silent = true, noremap = true})
-keymap("", "<leader>j", ":b#<cr>", {silent = true, noremap = true})
-
 require('bufferline').setup {
   options = {
     mode = "buffers", -- set to "tabs" to only show tabpages instead
@@ -57,4 +47,3 @@ require('bufferline').setup {
     -- end
   }
 }
-

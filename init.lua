@@ -14,6 +14,9 @@ local options = {
 	undofile = true,
 	signcolumn = "number",
 	termguicolors = true,
+	foldmethod = "expr",
+	foldexpr = 'nvim_treesitter#foldexpr()',
+	foldlevel = 99,
 }
 
 
@@ -24,11 +27,13 @@ end
 -- set list
 -- vim.opt.listchars:append("eol:↴")
 
-local keymap = vim.api.nvim_set_keymap
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+require("plugins")
+require("conf")
+
+local keymap = vim.api.nvim_set_keymap
 keymap("", "j", "(v:count == 0 ? 'gj' : 'j')", { noremap = true, silent = true, expr = true })
 keymap("", "k", "(v:count == 0 ? 'gk' : 'k')", { noremap = true, silent = true, expr = true })
 keymap("n", "<leader>w", "<cmd>w<cr>", { noremap = true })
@@ -36,26 +41,25 @@ keymap("n", "<leader>q", "<cmd>qa<cr>", { noremap = true })
 keymap("", "<leader><cr>", ":nohl<cr>", { noremap = true, silent = true })
 
 -- Buffer move
--- keymap("", "<leader>l", ":bnext<cr>", {})
--- keymap("", "<leader>h", ":bprev<cr>", {})
--- keymap("", "<leader>j", ":b#<cr>", {})
+keymap("", "<leader>k", ":BufferLinePick<cr>", {silent = true, noremap = true})
+keymap("", "<leader>h", ":BufferLineCyclePrev<cr>", {silent = true, noremap = true})
+keymap("", "<leader>l", ":BufferLineCycleNext<cr>", {silent = true, noremap = true})
+keymap("", "<leader>j", ":b#<cr>", {silent = true, noremap = true})
 
--- Return to last edit position when opening files (You want this!)
 vim.cmd [[
+	" Return to last edit position when opening files (You want this!)
 	autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+	augroup _fold_bug_solution
+		autocmd!
+		autocmd BufRead * autocmd BufWinEnter * ++once normal! zx
+	augroup end
 ]]
 
 -- Close current buffer
 keymap("", "<leader>d", ":bdelete!<cr>", { noremap = true })
 
-require("plugins")
-require("conf")
-
+-- colorscheme
 vim.cmd([[
-	set background=dark
-	colorscheme edge
+	colorscheme dracula
 ]])
-
-vim.wo.foldmethod = "expr"
-vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.wo.foldlevel = 99
