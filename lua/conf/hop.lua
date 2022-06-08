@@ -1,5 +1,5 @@
 require('hop').setup {
-	keys = 'etovxqpdygfblzhckisuran'
+	keys = 'etovxqpdygfblzhckisuranwjm;'
 }
 
 -- place this in one of your configuration file(s)
