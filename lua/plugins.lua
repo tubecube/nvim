@@ -145,22 +145,26 @@ return packer.startup(function(use)
 	-- colorschemes
 	use 'sainnhe/sonokai'
 	use {
-		'sainnhe/edge',
-		config = function()
-			vim.g.edge_style = 'default'
-			vim.g.edge_better_performance = 1
-		end
-	}
-	use {
 		'folke/tokyonight.nvim',
 		config = function()
 			vim.g.tokyonight_style = 'night' -- day or storm
 		end
 	}
-	use 'Mofiqul/dracula.nvim'
+	use {
+		'Mofiqul/dracula.nvim',
+		config = function()
+			vim.g.dracula_transparent_bg = true
+			vim.g.dracula_show_end_of_buffer = true
+		end
+	}
 
 	use 'jiangmiao/auto-pairs'
-	use 'RRethy/vim-illuminate'
+	use {
+		'RRethy/vim-illuminate',
+		config = function()
+			vim.g.Illuminate_delay = 500
+		end
+	}
 
 	-- treesitter
 	use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
