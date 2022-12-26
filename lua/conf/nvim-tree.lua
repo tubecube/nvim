@@ -1,6 +1,7 @@
 -- init.lua
 
-vim.api.nvim_set_keymap("n", "<C-n>", ":NvimTreeToggle<cr>", {noremap = true})
+vim.api.nvim_set_keymap("n", "<C-n>", ":NvimTreeToggle<cr>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<C-f>", ":NvimTreeFindFile<cr>", {noremap = true, silent = true})
 
 -- setup with all defaults
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
@@ -19,8 +20,6 @@ require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
   update_cwd = false,
   reload_on_bufenter = false,
   view = {
-    width = 30,
-    height = 30,
     hide_root_folder = false,
     side = "left",
     preserve_window_proportions = false,

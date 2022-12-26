@@ -14,7 +14,10 @@ local on_attach = function(_, bufnr)
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'ge', '<cmd>Trouble workspace_diagnostics<cr>', opts)
 	-- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua require("telescope.builtin").lsp_references()<CR>', opts)
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>Trouble lsp_references<cr>', opts)
-	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>Trouble lsp_definitions<cr>', opts)
+
+	-- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>Trouble lsp_definitions<cr>', opts)
+	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>Trouble lsp_implementations<cr>', opts)
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
@@ -33,12 +36,12 @@ require('lspconfig').pyright.setup {
 	on_attach = on_attach,
 }
 
-require('lspconfig').clangd.setup {
+--[[ require('lspconfig').clangd.setup {
 	on_attach = on_attach,
-}
+} ]]
 
 
-require 'lspconfig'.sumneko_lua.setup {
+--[[ require 'lspconfig'.sumneko_lua.setup {
 	on_attach = on_attach,
 	settings = {
 		Lua = { runtime = {
@@ -59,4 +62,4 @@ require 'lspconfig'.sumneko_lua.setup {
 			},
 		},
 	},
-}
+} ]]
