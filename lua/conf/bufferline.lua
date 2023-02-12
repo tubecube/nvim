@@ -1,7 +1,7 @@
 require('bufferline').setup {
   options = {
     mode = "buffers", -- set to "tabs" to only show tabpages instead
-    numbers = "none",-- "none" | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
+    numbers = "ordinal",-- "none" | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
     -- close_command = "bdelete! %d",       -- can be a string | function, see "Mouse actions"
     -- right_mouse_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
     -- left_mouse_command = "buffer %d",    -- can be a string | function, see "Mouse actions"
@@ -18,8 +18,8 @@ require('bufferline').setup {
     --- Please note some names can/will break the
     --- bufferline so use this at your discretion knowing that it has
     --- some limitations that will *NOT* be fixed.
-    max_name_length = 18,
-    max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
+    -- max_name_length = 18,
+    -- max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
     tab_size = 18,
     diagnostics = "nvim_lsp", -- false | "nvim_lsp" | "coc",
     diagnostics_update_in_insert = false,

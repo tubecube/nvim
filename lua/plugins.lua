@@ -142,6 +142,8 @@ return packer.startup(function(use)
 		end
 	}
 
+	use 'psliwka/vim-smoothie'
+
 	-- comment
 	use 'b3nj5m1n/kommentary'
 
