@@ -62,13 +62,6 @@ end
 -- }
 
 return packer.startup(function(use)
-	use {
-		'lewis6991/impatient.nvim',
-		config = function()
-			require'impatient'
-		end
-	}
-
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
 
@@ -76,24 +69,13 @@ return packer.startup(function(use)
 
 	use 'tpope/vim-repeat'
 	use 'tpope/vim-surround'
+	use 'tpope/vim-commentary'
 
 	use {
 		"folke/which-key.nvim",
 		config = function()
 			require("which-key").setup{}
 		end
-	}
-
-	use {
-		'rcarriga/nvim-notify',
-		config = function ()
-			vim.notify = require('notify')
-		end
-	}
-
-	use {
-		'phaazon/hop.nvim',
-		branch = 'v1',
 	}
 
 	use {
@@ -109,52 +91,38 @@ return packer.startup(function(use)
 	}
 
 	use {
-		'norcalli/nvim-colorizer.lua',
-		config = function()
-			require('colorizer').setup()
+		'nvim-lualine/lualine.nvim',
+		config = function ()
+			require("lualine").setup {
+				options = {
+					theme = 'dracula',
+					disabled_filetypes = {"NvimTree"},
+				}
+			}
 		end
 	}
+	use {
+		'akinsho/bufferline.nvim',
+		config = function ()
+			require("bufferline").setup {
+				options = {
 
-	use {
-		'nvim-lualine/lualine.nvim',
-	}
-	use {
-		'akinsho/bufferline.nvim', tag = "v2.*"
+				}
+			}
+		end
 	}
 	use {
 		'kyazdani42/nvim-tree.lua',
-	}
-
-	use {
-		'goolord/alpha-nvim',
 		config = function ()
-			require'alpha'.setup(require'alpha.themes.startify'.config)
-		end
-	}
-	use 'akinsho/toggleterm.nvim'
-
-	use {
-		"folke/trouble.nvim",
-		config = function()
-			require("trouble").setup {
-
+			require'nvim-tree'.setup {
 			}
+			vim.api.nvim_set_keymap("n", "<C-n>", ":NvimTreeToggle<cr>", {noremap = true, silent = true})
+			vim.api.nvim_set_keymap("n", "<C-f>", ":NvimTreeFindFile<cr>", {noremap = true, silent = true})
 		end
 	}
 
 	use 'psliwka/vim-smoothie'
 
-	-- comment
-	use 'b3nj5m1n/kommentary'
-
-	-- colorschemes
-	use 'sainnhe/sonokai'
-	use {
-		'folke/tokyonight.nvim',
-		config = function()
-			vim.g.tokyonight_style = 'night' -- day or storm
-		end
-	}
 	use {
 		'Mofiqul/dracula.nvim',
 		config = function()
@@ -163,7 +131,10 @@ return packer.startup(function(use)
 		end
 	}
 
-	use 'jiangmiao/auto-pairs'
+	use {
+		'jiangmiao/auto-pairs',
+	}
+	
 	use {
 		'RRethy/vim-illuminate',
 		config = function()
@@ -172,22 +143,35 @@ return packer.startup(function(use)
 		end
 	}
 
-	-- treesitter
-	use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
-
-	--lsp
-	use 'neovim/nvim-lspconfig'
-	use 'ray-x/lsp_signature.nvim'
-	-- use 'kosayoda/nvim-lightbulb' -- code action
-
 	use {
-		"j-hui/fidget.nvim",
-		config = function ()
-			require 'fidget'.setup{}
+		"nvim-treesitter/nvim-treesitter",
+		run = ":TSUpdate",
+		config = function()
+			require 'nvim-treesitter.configs'.setup {
+				highlight = {
+					enable = true,
+				},
+				incremental_selection = {
+					enable = true,
+					keymaps = {
+						init_selection = "gnn",
+						node_decremental = "<c-p>",
+						node_incremental = "<c-n>",
+					}
+				},
+				textobjects = {
+					enable = true,
+				},
+				indent = {
+					enable = false,
+				}
+			}
 		end
 	}
 
-	--cmp plugins
+	use 'neovim/nvim-lspconfig'
+	use 'ray-x/lsp_signature.nvim'
+
 	use {
 		'hrsh7th/nvim-cmp',
 		requires = {
@@ -201,36 +185,14 @@ return packer.startup(function(use)
 		}
 	}
 
-	use 'L3MON4D3/LuaSnip'
-	use 'rafamadriz/friendly-snippets'
-
-	-- telescope
 	use {
 		"nvim-telescope/telescope.nvim",
 		requires = {
 			{'nvim-lua/plenary.nvim'},
+			{'nvim-telescope/telescope-live-grep-args.nvim'},
+			{'nvim-telescope/telescope-fzf-native.nvim', run = "make"},
+			{'nvim-telescope/telescope-frecency.nvim', requires = {'tami5/sqlite.lua'}},
 		}
 	}
-
-	use {
-		'nvim-telescope/telescope-live-grep-args.nvim',
-	}
-
-	use {
-		'nvim-telescope/telescope-fzf-native.nvim',
-		run = "make"
-	}
-
-	use {
-		'nvim-telescope/telescope-ui-select.nvim',
-	}
-
-	use {
-		'nvim-telescope/telescope-frecency.nvim',
-		requires = {'tami5/sqlite.lua'}
-	}
-
-	-- dap
-	use 'mfussenegger/nvim-dap'
 
 end)

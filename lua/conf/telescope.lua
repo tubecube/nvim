@@ -11,8 +11,8 @@ keymap("n", "<leader>m", "<cmd>lua require('telescope').extensions.frecency.frec
 
 telescope.setup {
 	defaults = {
-		sorting_strategy = "ascending",
-		layout_strategy = 'center',
+		-- sorting_strategy = "ascending",
+		-- layout_strategy = 'center',
 	},
 	pickers = {
 		find_files = {
@@ -24,11 +24,6 @@ telescope.setup {
 			override_generic_sorter = true,
 			override_file_sorter = true,
 			case_mode = "smart_case",
-		},
-		["ui-select"] = {
-			require("telescope.themes").get_dropdown {
-
-			}
 		},
 		live_grep_args = {
 			auto_quoting = true,
@@ -46,5 +41,4 @@ telescope.setup {
 
 telescope.load_extension("live_grep_args")
 telescope.load_extension("fzf")
-telescope.load_extension("ui-select")
 telescope.load_extension("frecency")
