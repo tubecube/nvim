@@ -8,7 +8,6 @@ M.setup = function()
 
 	local ignores = {
 		"init",
-		"nvim-lightbulb",
 	}
 
 	local _ignores = {}

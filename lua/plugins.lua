@@ -191,8 +191,44 @@ return packer.startup(function(use)
 			{'nvim-lua/plenary.nvim'},
 			{'nvim-telescope/telescope-live-grep-args.nvim'},
 			{'nvim-telescope/telescope-fzf-native.nvim', run = "make"},
-			{'nvim-telescope/telescope-frecency.nvim', requires = {'tami5/sqlite.lua'}},
-		}
+		},
+		config = function()
+			local telescope = require("telescope")
+			function keymap(key, map)
+				vim.api.nvim_set_keymap("n", key, map, {noremap = true})
+			end
+
+			keymap("<leader>f", "<cmd>lua require('telescope.builtin').find_files()<cr>")
+			keymap("<leader>g", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>")
+			keymap("<leader><S-g>", "<cmd>lua require('telescope.builtin').grep_string()<cr>")
+			keymap("<leader>pb", "<cmd>lua require('telescope.builtin').buffers()<cr>")
+			keymap("<leader>po", "<cmd>lua require('telescope.builtin').oldfiles()<cr>")
+			keymap("<leader>pp", "<cmd>lua require('telescope.builtin').planets{}<cr>")
+			keymap("<leader>pc", "<cmd>lua require('telescope.builtin').commands{}<cr>")
+			keymap("<leader>ps", "<cmd>lua require('telescope.builtin').search_history{}<cr>")
+
+			telescope.setup {
+				defaults = {
+					-- sorting_strategy = "ascending",
+					-- layout_strategy = 'center',
+				},
+				pickers = {
+					find_files = {
+					},
+				},
+				extensions = {
+					fzf = {
+						fuzzy = true,
+						override_generic_sorter = true,
+						override_file_sorter = true,
+						case_mode = "smart_case",
+					},
+					live_grep_args = {
+						auto_quoting = true,
+					},
+				},
+			}
+		end
 	}
 
 end)
