@@ -218,12 +218,12 @@ return packer.startup(function(use)
 
 			keymap("<leader>f", "<cmd>lua require('telescope.builtin').find_files()<cr>")
 			keymap("<leader>g", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>")
-			keymap("<leader><S-g>", "<cmd>lua require('telescope.builtin').grep_string()<cr>")
+			keymap("<leader>pg", "<cmd>lua require('telescope.builtin').grep_string()<cr>")
+			keymap("<leader>pt", "<cmd>lua require('telescope.builtin').tags{}<cr>")
 			keymap("<leader>pb", "<cmd>lua require('telescope.builtin').buffers()<cr>")
 			keymap("<leader>po", "<cmd>lua require('telescope.builtin').oldfiles()<cr>")
 			keymap("<leader>pp", "<cmd>lua require('telescope.builtin').planets{}<cr>")
 			keymap("<leader>pc", "<cmd>lua require('telescope.builtin').commands{}<cr>")
-			keymap("<leader>ps", "<cmd>lua require('telescope.builtin').search_history{}<cr>")
 
 			telescope.setup {
 				defaults = {
