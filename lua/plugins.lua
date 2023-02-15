@@ -135,6 +135,9 @@ return packer.startup(function(use)
 			require'nvim-tree'.setup {
 			}
 			vim.api.nvim_set_keymap("n", "<C-n>", ":NvimTreeToggle<cr>", {noremap = true, silent = true})
+					live_grep_args = {
+						auto_quoting = true,
+					},
 			vim.api.nvim_set_keymap("n", "<C-f>", ":NvimTreeFindFile<cr>", {noremap = true, silent = true})
 		end
 	}
@@ -207,7 +210,6 @@ return packer.startup(function(use)
 		"nvim-telescope/telescope.nvim",
 		requires = {
 			{'nvim-lua/plenary.nvim'},
-			{'nvim-telescope/telescope-live-grep-args.nvim'},
 			{'nvim-telescope/telescope-fzf-native.nvim', run = "make"},
 		},
 		config = function()
@@ -217,7 +219,7 @@ return packer.startup(function(use)
 			end
 
 			keymap("<leader>f", "<cmd>lua require('telescope.builtin').find_files()<cr>")
-			keymap("<leader>g", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>")
+			keymap("<leader>g", "<cmd>lua require('telescope.builtin').live_grep()<cr>")
 			keymap("<leader>pg", "<cmd>lua require('telescope.builtin').grep_string()<cr>")
 			keymap("<leader>pt", "<cmd>lua require('telescope.builtin').tags{}<cr>")
 			keymap("<leader>pb", "<cmd>lua require('telescope.builtin').buffers()<cr>")
@@ -240,9 +242,6 @@ return packer.startup(function(use)
 						override_generic_sorter = true,
 						override_file_sorter = true,
 						case_mode = "smart_case",
-					},
-					live_grep_args = {
-						auto_quoting = true,
 					},
 				},
 			}
