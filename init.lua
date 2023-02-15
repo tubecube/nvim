@@ -43,14 +43,7 @@ keymap("", "j", "(v:count == 0 ? 'gj' : 'j')", { noremap = true, silent = true, 
 keymap("", "k", "(v:count == 0 ? 'gk' : 'k')", { noremap = true, silent = true, expr = true })
 keymap("n", "<leader>w", "<cmd>w<cr>", { noremap = true, silent = true })
 keymap("", "<leader><cr>", ":nohl<cr>", { noremap = true, silent = true })
-
--- Buffer move
-keymap("", "<leader>k", ":BufferLinePick<cr>", {silent = true, noremap = true})
-keymap("", "<leader>h", ":BufferLineCyclePrev<cr>", {silent = true, noremap = true})
-keymap("", "<leader>l", ":BufferLineCycleNext<cr>", {silent = true, noremap = true})
 keymap("", "<leader>j", ":b#<cr>", {silent = true, noremap = true})
-
--- Close current buffer
 keymap("", "<leader>d", ":bdelete!<cr>", { noremap = true })
 keymap("", "<leader>a", ":lua require'tools'.CleanExtraSpaces()<cr>", {noremap = true, silent = true})
 

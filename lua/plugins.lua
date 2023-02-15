@@ -106,9 +106,27 @@ return packer.startup(function(use)
 		config = function ()
 			require("bufferline").setup {
 				options = {
-
+					numbers = "ordinal",
 				}
 			}
+
+			function keymap(key, map)
+				vim.api.nvim_set_keymap("n", key, map, {noremap = true})
+			end
+
+			keymap("<leader>1", "<cmd>BufferLineGoToBuffer 1<cr>")
+			keymap("<leader>2", "<cmd>BufferLineGoToBuffer 2<cr>")
+			keymap("<leader>3", "<cmd>BufferLineGoToBuffer 3<cr>")
+			keymap("<leader>4", "<cmd>BufferLineGoToBuffer 4<cr>")
+			keymap("<leader>5", "<cmd>BufferLineGoToBuffer 5<cr>")
+			keymap("<leader>6", "<cmd>BufferLineGoToBuffer 6<cr>")
+			keymap("<leader>7", "<cmd>BufferLineGoToBuffer 7<cr>")
+			keymap("<leader>8", "<cmd>BufferLineGoToBuffer 8<cr>")
+			keymap("<leader>9", "<cmd>BufferLineGoToBuffer 9<cr>")
+			keymap("<leader>-", "<cmd>BufferLineGoToBuffer -1<cr>")
+			keymap("<leader>k", "<cmd>BufferLinePick<cr>")
+			keymap("<leader>h", "<cmd>BufferLineCyclePrev<cr>")
+			keymap("<leader>l", "<cmd>BufferLineCycleNext<cr>")
 		end
 	}
 	use {
