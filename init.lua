@@ -39,8 +39,6 @@ tools.ReturnLastPosOnEnter()
 tools.FixFoldBug()
 
 local keymap = vim.api.nvim_set_keymap
-keymap("", "j", "(v:count == 0 ? 'gj' : 'j')", { noremap = true, silent = true, expr = true })
-keymap("", "k", "(v:count == 0 ? 'gk' : 'k')", { noremap = true, silent = true, expr = true })
 keymap("n", "<leader>w", "<cmd>w<cr>", { noremap = true, silent = true })
 keymap("", "<leader><cr>", ":nohl<cr>", { noremap = true, silent = true })
 keymap("", "<leader>j", ":b#<cr>", {silent = true, noremap = true})
